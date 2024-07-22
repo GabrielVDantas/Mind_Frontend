@@ -7,6 +7,7 @@ class UserRequests {
   static async registerRequest(data: Record<string, unknown>) {
     const keys = ["username", "email", "password", "avatar"];
     const formData = await RequestService.generateFormData(true, keys, data);
+    console.log(formData);
     return await BaseRequests.basePostRequest("/register", formData);
   }
 
