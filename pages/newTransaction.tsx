@@ -1,9 +1,11 @@
+import { useRouter } from "next/router";
 import Inside from "../src/components/Container/Inside";
 import Form from "../src/components/Form/Form";
 import InputData from "../src/interfaces/Input";
-
+import TransactionRequests from "../src/service/transactionService/transactionRequests";
 
 const NewProjectForm = () => {
+  const router = useRouter();
   const inputs: InputData[] = [
     {
       name: "amount",
@@ -21,7 +23,8 @@ const NewProjectForm = () => {
 
   const submitNewProject = async (data: Record<string, unknown>) => {
     try {
-      console.log("Submetido!");
+      const response = await TransactionRequests.newTransactionRequest(data);
+      response && response.status === 201 && router.push("/feed");
     } catch (error) {
       console.error(error);
     }

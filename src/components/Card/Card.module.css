@@ -24,3 +24,15 @@
   min-width: 15%;
   max-width: 25%;
 }
+
+.cardContainer button {
+  width: 136px;
+  height: 36px;
+  font-size: 12px;
+  padding: 0 20px;
+}
+
+.cardButtons {
+  display: flex;
+  gap: 12px;
+}

@@ -11,7 +11,7 @@ const Feed = () => {
     async function feed() {
       try {
         const response = await TransactionRequests.getFeedTransactionsRequest();
-        response && response.status === 200 && setTransactions(response.data.transactions);
+        response && response.status === 200 && setTransactions(response.data.transaction);
       } catch (error) {
         console.error(error);
       }

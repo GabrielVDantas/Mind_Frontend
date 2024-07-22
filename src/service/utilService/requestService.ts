@@ -17,7 +17,7 @@ class RequestService {
           Authorization: `Bearer ${token}`,
         },
       };
-    }
+    }    
     return headers;
   }
 
@@ -32,7 +32,7 @@ class RequestService {
             formData.append(key, data[key] as Blob);
           }
         }
-      })
+      })      
       return formData;
     } else {
       const formData: Record<string, unknown> = {};
@@ -41,6 +41,7 @@ class RequestService {
           formData[key] = data[key];
         }
       });
+      console.log(formData);
       return formData;
     }
   }

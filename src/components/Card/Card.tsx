@@ -3,6 +3,7 @@ import H3 from "../Text/H3";
 import P from "../Text/P";
 import styles from "./Card.module.css";
 import Transaction from "../../interfaces/Transaction";
+import Button from "../Button/Button";
 
 interface Card {
   transaction: Transaction;
@@ -11,8 +12,12 @@ interface Card {
 const Card: React.FC<Card> = ({ transaction }) => {
   return (
     <article className={styles.cardContainer} key={transaction.id}>
-      <H3 content={`${transaction.amount}`} />
-      <P content={transaction.description} />
+      <H3 content={`R$: ${transaction.amount}`} />
+      <P content={`Motivo: ${transaction.description}`} />
+      <div className={styles.cardButtons}>
+        <Button content="Atualizar" />
+        <Button content="Deletar" />
+      </div>
     </article>
   );
 };
