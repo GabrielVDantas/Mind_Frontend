@@ -1,0 +1,10 @@
+.inside {
+  width: 100%;
+  background-color: var(--color-1);
+  display: flex;
+}
+
+.insideContent {
+  margin: 2% 2% 2% 8%;
+  width: 100%;
+}

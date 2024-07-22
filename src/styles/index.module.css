@@ -1,0 +1,24 @@
+.homeText,
+.homeAnchor {
+  display: flex;
+  justify-content: center;
+}
+
+.homeText {
+  margin: 32px;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.homeAnchor {
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.homeAnchor a {
+  width: 136px;
+  height: 36px;
+  font-size: 12px;
+  padding: 0 20px;
+}

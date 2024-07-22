@@ -1,0 +1,33 @@
+.navStyle {
+  background-color: var(--color-2);
+  width: 5%;
+  height: 100vh;
+  position: fixed;
+}
+
+.navStyle li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem;
+}
+
+.navStyle a {
+  all: unset;
+  cursor: pointer;
+}
+
+.iconStyle {
+  font-size: 28px;
+  margin: 0.25rem 0;
+  transition: transform 0.3s ease;
+}
+
+.iconStyle:hover {
+  transform: scale(1.1);
+}
+
+.iconStyle:active {
+  transform: scale(0.9);
+}

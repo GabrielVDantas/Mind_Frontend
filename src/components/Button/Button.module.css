@@ -1,0 +1,43 @@
+.basic {
+  transition: var(--transition);
+}
+
+.basic {
+  text-decoration: none;
+  background-color: transparent;
+  border-radius: var(--border-radius);
+  border: var(--button-border);
+  color: var(--color-2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+.openModal, .closeModal {
+  cursor: pointer;
+}
+
+.openModal {
+  all: unset;
+  cursor: pointer;
+  display: block;
+}
+
+.closeModal {
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+  color: var(--color-1);
+}
+
+.basic:hover {
+  transform: scale(1.1);
+  background-color: var(--color-2);
+  color: var(--color-1);
+}
+
+.basic:active, .openModal:active {
+    transform: scale(0.9);
+}

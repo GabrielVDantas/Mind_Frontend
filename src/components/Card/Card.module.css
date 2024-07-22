@@ -1,0 +1,26 @@
+.cardContainer {
+  text-align: left;
+  background-color: transparent;
+  margin: 36px auto;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--border-radius);
+  border: var(--card-border);
+  width: 75%;
+  min-height: 150px;
+  position: relative;
+  padding-left: 3rem;
+  overflow: hidden;
+}
+
+.cardContainer h3 {
+  margin-top: 1rem;
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.cardContainer img {
+  object-fit: contain;
+  min-width: 15%;
+  max-width: 25%;
+}

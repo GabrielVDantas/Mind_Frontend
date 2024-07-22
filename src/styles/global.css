@@ -1,0 +1,21 @@
+:root {
+  --color-1: #fff;
+  --color-2: #3c60af;
+  --color-3: #090a0c;
+  --button-border: 2px solid var(--color-2);
+  --border-radius: 4px;
+  --card-border: 4px solid var(--color-2);
+  --input-border: 2px solid var(--color-3);
+  --transition: transform 0.3s ease;
+}
+
+* {
+  font-family: "Roboto", sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}

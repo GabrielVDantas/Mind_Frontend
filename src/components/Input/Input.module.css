@@ -1,0 +1,43 @@
+.inputStyle {
+  background-color: transparent;
+  border-radius: var(--border-radius);
+  border: var(--input-border);
+  height: 40px;
+  color: var(--color-3);
+  font-size: 1em;
+  margin: 0.5rem;
+  padding-left: 1rem;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.inputStyle:focus {
+  border: var(--button-border);
+  outline: none;
+  color: var(--color-2);
+  transform: scale(1.1);
+}
+
+.inputStyle::placeholder {
+  color: var(--color-3);
+}
+
+.inputFile {
+}
+
+.inputFile :global(input[type="file"]::-webkit-file-upload-button) {
+  background-color: transparent;
+  cursor: pointer;
+  margin-top: 6.7px;
+  border: var(--input-border);
+  color: var(--color-3);
+}
+
+.inputNumber {
+}
+
+.inputNumber :global(input[type="number"]::-webkit-inner-spin-button),
+.inputNumber :global(input[type="number"]::-webkit-outer-spin-button) {
+  -webkit-appearance: none;
+  margin: 0;
+}
