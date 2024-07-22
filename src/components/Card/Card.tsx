@@ -2,19 +2,17 @@ import React from "react";
 import H3 from "../Text/H3";
 import P from "../Text/P";
 import styles from "./Card.module.css";
-import Project from "../../interfaces/Project";
+import Transaction from "../../interfaces/Transaction";
 
 interface Card {
-  project: Project;
+  transaction: Transaction;
 }
 
-const Card: React.FC<Card> = ({ project }) => {
+const Card: React.FC<Card> = ({ transaction }) => {
   return (
-    <article className={styles.cardContainer} key={project.id}>
-      <H3 content={project.name} />
-      <img src={project.base64CoverArt} />
-      <P content={project.description} />
-      <P content={`${project.goal}`} />
+    <article className={styles.cardContainer} key={transaction.id}>
+      <H3 content={`${transaction.amount}`} />
+      <P content={transaction.description} />
     </article>
   );
 };

@@ -1,8 +1,4 @@
 .basic {
-  transition: var(--transition);
-}
-
-.basic {
   text-decoration: none;
   background-color: transparent;
   border-radius: var(--border-radius);
@@ -13,6 +9,8 @@
   align-items: center;
   text-align: center;
   justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
 }
 
 .openModal, .closeModal {

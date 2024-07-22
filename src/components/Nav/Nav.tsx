@@ -17,7 +17,7 @@ const Nav = () => {
         <ul>
           <Anchor
             content={<LuClipboardEdit className={styles.iconStyle} />}
-            to="/new"
+            to="/newTransaction"
           />
         </ul>
         <ul>
