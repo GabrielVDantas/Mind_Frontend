@@ -1,8 +1,11 @@
+import { useRouter } from "next/router";
 import Outside from "../src/components/Container/Outside";
 import Form from "../src/components/Form/Form";
 import InputData from "../src/interfaces/Input";
+import UserRequests from "../src/service/userService/userRequests";
 
 const RegisterForm = () => {
+  const router = useRouter();
   const inputs: InputData[] = [
     { name: "username", type: "text", placeholder: "Nome...", required: true },
     { name: "email", type: "email", placeholder: "E-mail...", required: true },
@@ -27,7 +30,8 @@ const RegisterForm = () => {
   ];
 
   const submitRegister = async (data: Record<string, string>) => {
-    console.log("Submetido");
+    const response = await UserRequests.registerRequest(data);
+    response && response.status === 201 && router.push("/login")
   };
 
   return (
