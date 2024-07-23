@@ -17,11 +17,11 @@
   cursor: pointer;
 }
 
-.openModal {
+/* .openModal {
   all: unset;
   cursor: pointer;
   display: block;
-}
+} */
 
 .closeModal {
   position: absolute;
