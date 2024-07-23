@@ -17,12 +17,6 @@
   cursor: pointer;
 }
 
-/* .openModal {
-  all: unset;
-  cursor: pointer;
-  display: block;
-} */
-
 .closeModal {
   position: absolute;
   top: 1.5rem;
