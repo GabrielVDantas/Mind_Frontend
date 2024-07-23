@@ -14,7 +14,7 @@ class TransactionRequests {
 
   static async newTransactionRequest(data: Record<string, unknown>) {
     try {
-      const keys = ["title", "amount", "description"];
+      const keys = ["amount", "description", "category"];
       const formData = await RequestService.generateFormData(false, keys, data);
       const header = await RequestService.generateRequestHeader(false);
       return await BaseRequests.basePostRequest(
@@ -32,9 +32,9 @@ class TransactionRequests {
     transactionId: number
   ) {
     try {
-      const keys = ["title", "amount", "description"];
+      const keys = ["amount", "description", "category"];      
       const formData = await RequestService.generateFormData(false, keys, data);
-      const header = await RequestService.generateRequestHeader(false);
+      const header = await RequestService.generateRequestHeader(false);      
       return await BaseRequests.basePutRequest(
         `/update-transaction/${transactionId}`,
         formData,

@@ -8,12 +8,6 @@ const NewProjectForm = () => {
   const router = useRouter();
   const inputs: InputData[] = [
     {
-      name: "title",
-      type: "text",
-      placeholder: "Título...",
-      required: true,
-    },
-    {
       name: "amount",
       type: "number",
       placeholder: "Quantia...",
@@ -43,6 +37,7 @@ const NewProjectForm = () => {
       inputs={inputs}
       buttonContent="Criar"
       submitForm={submitNewTransaction}
+      needCategory={true}
     />
   );
 };

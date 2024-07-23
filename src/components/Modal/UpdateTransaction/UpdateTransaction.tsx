@@ -39,12 +39,6 @@ const UpdateTransactionForm: React.FC<DeleteOrUpdate> = ({ transactionId, closeM
   const router = useRouter();
   const inputs: InputData[] = [
     {
-      name: "title",
-      type: "text",
-      placeholder: "Novo título...",
-      required: true,
-    },
-    {
       name: "amount",
       type: "number",
       placeholder: "Nova quantia...",
@@ -75,6 +69,7 @@ const UpdateTransactionForm: React.FC<DeleteOrUpdate> = ({ transactionId, closeM
       inputs={inputs}
       buttonContent="Atualizar"
       submitForm={submitUpdateTransaction}
+      needCategory={true}
     />
   );
 };

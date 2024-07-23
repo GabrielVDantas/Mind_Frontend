@@ -3,8 +3,9 @@ interface FormProps<T> {
   pContent: string;
   inputs: any[];
   buttonContent: string;
-  authForm?: string;
   submitForm: (data: T) => void;
+  authForm?: string;
+  needCategory?: boolean;
 }
 
 export default FormProps;

@@ -1,0 +1,20 @@
+.selectStyle {
+  background-color: transparent;
+  border-radius: var(--border-radius);
+  border: var(--input-border);
+  height: 40px;
+  color: var(--color-3);
+  font-size: 1em;
+  margin: 0.5rem;
+  padding-left: 1rem;
+  display: block;
+  transition: transform 0.3s ease;
+  width: 35%;
+}
+
+.selectStyle:focus {
+  border: var(--button-border);
+  outline: none;
+  color: var(--color-2);
+  transform: scale(1.1);
+}

@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import H3 from "../Text/H3";
 import P from "../Text/P";
 import styles from "./Card.module.css";
 import Transaction from "../../interfaces/Transaction";
-import Button from "../Button/Button";
-import Modal from "../Modal";
 import UpdateTransaction from "../Modal/UpdateTransaction/UpdateTransaction";
 import DeleteTransaction from "../Modal/DeleteTransaction/DeleteTransaction";
 import Strong from "../Text/Strong";
@@ -15,8 +13,8 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ transaction }) => {
   return (
-    <article className={styles.cardContainer} key={transaction.id}>
-      <Strong content={transaction.title}/>
+    <article className={styles.cardContainer} key={transaction.id}>      
+      <Strong content={`Categoria: ${transaction.category.name}`}/>
       <H3 content={`R$: ${transaction.amount}`} />
       <P content={`Motivo: ${transaction.description}`} />
       <div className={styles.cardButtons}>

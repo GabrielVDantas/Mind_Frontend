@@ -1,11 +1,13 @@
 import styles from "./Form.module.css";
-import { FormEvent, useState } from "react";
+import React, { FormEvent, useState } from "react";
 import H3 from "../Text/H3";
 import Button from "../Button/Button";
 import Anchor from "../Button/Anchor";
 import Input from "../Input";
 import P from "../Text/P";
 import FormProps from "../../interfaces/Form";
+import Select from "../Select/Select";
+import Categories from "../../interfaces/Category";
 
 const Form = <T extends Record<string, unknown>>({
   h3Content,
@@ -14,12 +16,17 @@ const Form = <T extends Record<string, unknown>>({
   buttonContent,
   authForm,
   submitForm,
+  needCategory,
 }: FormProps<T>) => {
   const [data, setData] = useState<T>(() => ({} as T));
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
 
   const handleSubmitForm = async (e: FormEvent) => {
     e.preventDefault();
-    submitForm(data);
+    const formData = needCategory
+      ? { ...data, category: selectedCategory }
+      : data;
+    submitForm(formData);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,13 +41,19 @@ const Form = <T extends Record<string, unknown>>({
     }
   };
 
-  const handleInputFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputFileChange = async (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const { name } = e.target;
     const file = e.target.files?.[0];
     setData({
       ...data,
-      [name]: file
-    })
+      [name]: file,
+    });
+  };
+
+  const handleCategoryChange = (value: string) => {
+    setSelectedCategory(value);
   };
 
   return (
@@ -60,6 +73,12 @@ const Form = <T extends Record<string, unknown>>({
           />
         </div>
       ))}
+      {needCategory && (
+        <Select
+          categories={Object.values(Categories)}
+          onChange={handleCategoryChange}
+        />
+      )}
       <Button content={buttonContent} />
       {authForm === "register" ? (
         <Anchor to="/login" content="Já tenho uma conta" />
