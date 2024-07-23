@@ -18,7 +18,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, content }) => {
         <>
           <Button buttonAction={onClose} content={<LuXCircle />} closeModal={true}/>
         </>
-        <div>{content}</div>
+        <div className={styles.divWithContent}>{content}</div>
       </div>
     </section>
   );

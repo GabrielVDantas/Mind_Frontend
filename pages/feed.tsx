@@ -23,7 +23,7 @@ const Feed = () => {
     <Inside
       content={
         transactions.length === 0 ? (
-          <H2 content="Você não criou nenhuma transação ainda, tente criar uma agora!" />
+          <H2 content="Estamos buscando as transações (ou talvez você não tenha criado uma ainda)..." />
         ) : (
           transactions.map((transaction) => <Card transaction={transaction} key={transaction.id}/>)
         )

@@ -14,15 +14,11 @@
 }
 
 .cardContainer h3 {
-  margin-top: 1rem;
-  font-size: 40px;
-  font-weight: 700;
+  margin: 0.5rem 0;
 }
 
-.cardContainer img {
-  object-fit: contain;
-  min-width: 15%;
-  max-width: 25%;
+.cardContainer p {
+  margin-bottom: 0.5em;
 }
 
 .cardContainer button {
@@ -35,4 +31,5 @@
 .cardButtons {
   display: flex;
   gap: 12px;
+  margin-bottom: 1em;
 }

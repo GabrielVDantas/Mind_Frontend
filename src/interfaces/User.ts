@@ -1,16 +1,12 @@
-import Transaction from "./Transaction";
-
-interface UserData {
-  id: number;
-  username: string;
-  email: string;
+interface User {
+  userDataWithoutPassAndAvatar: {
+    id: number,
+    username: string,
+    email: string,
+    currentBalance: number,
+  }
   avatar: string;
 }
 
-interface UserProfile {
-  userData: UserData;
-  userProjects: Transaction[];
-}
-
-export default UserProfile;
+export default User;
 

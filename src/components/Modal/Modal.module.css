@@ -21,8 +21,14 @@
   text-align: center;
   justify-content: center;
   padding: 64px;
+  position: fixed;
 }
 
-.modalCard input {
+.divWithContent {
   width: 100%;
 }
+
+.divWithContent input {
+  width: 100%;
+}
+

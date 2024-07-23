@@ -1,4 +1,4 @@
-.basic {
+.basic, .openModal {
   text-decoration: none;
   background-color: transparent;
   border-radius: var(--border-radius);
@@ -13,23 +13,24 @@
   transition: var(--transition);
 }
 
-.openModal, .closeModal {
-  cursor: pointer;
-}
-
 .closeModal {
+  all: unset;
   position: absolute;
   top: 1.5rem;
   right: 2rem;
-  color: var(--color-1);
+  border: var(--button-border);
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+  color: var(--color-2);
+  cursor: pointer;
 }
 
-.basic:hover {
+.basic:hover, .openModal:hover, .closeModal:hover {
   transform: scale(1.1);
   background-color: var(--color-2);
   color: var(--color-1);
 }
 
-.basic:active, .openModal:active {
+.basic:active, .openModal:active, .closeModal:active {
     transform: scale(0.9);
 }

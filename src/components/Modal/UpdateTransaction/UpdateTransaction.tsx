@@ -27,7 +27,7 @@ const UpdateTransaction: React.FC<DeleteOrUpdate> = ({ transactionId }) => {
       <Modal
         isOpen={updateTransactionModal}
         onClose={closeUpdateTransactionModal}
-        content={<UpdateTransactionForm transactionId={transactionId} />}
+        content={<UpdateTransactionForm transactionId={transactionId} closeModal={closeUpdateTransactionModal}/>}
       />
     </>
   );
@@ -35,9 +35,15 @@ const UpdateTransaction: React.FC<DeleteOrUpdate> = ({ transactionId }) => {
 
 export default UpdateTransaction;
 
-const UpdateTransactionForm: React.FC<DeleteOrUpdate> = ({ transactionId }) => {
+const UpdateTransactionForm: React.FC<DeleteOrUpdate> = ({ transactionId, closeModal }) => {
   const router = useRouter();
   const inputs: InputData[] = [
+    {
+      name: "title",
+      type: "text",
+      placeholder: "Novo título...",
+      required: true,
+    },
     {
       name: "amount",
       type: "number",
@@ -57,7 +63,9 @@ const UpdateTransactionForm: React.FC<DeleteOrUpdate> = ({ transactionId }) => {
       data,
       transactionId
     );
-    response && response.status === 200 && router.push("/feed");
+    if (response && response.status === 200) {
+      closeModal();
+    }
   };
 
   return (

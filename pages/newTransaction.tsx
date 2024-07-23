@@ -8,6 +8,12 @@ const NewProjectForm = () => {
   const router = useRouter();
   const inputs: InputData[] = [
     {
+      name: "title",
+      type: "text",
+      placeholder: "Título...",
+      required: true,
+    },
+    {
       name: "amount",
       type: "number",
       placeholder: "Quantia...",
@@ -21,7 +27,7 @@ const NewProjectForm = () => {
     },
   ];
 
-  const submitNewProject = async (data: Record<string, unknown>) => {
+  const submitNewTransaction = async (data: Record<string, unknown>) => {
     try {
       const response = await TransactionRequests.newTransactionRequest(data);
       response && response.status === 201 && router.push("/feed");
@@ -36,7 +42,7 @@ const NewProjectForm = () => {
       pContent="Coloque numeros negativos caso seja uma despesa"
       inputs={inputs}
       buttonContent="Criar"
-      submitForm={submitNewProject}
+      submitForm={submitNewTransaction}
     />
   );
 };

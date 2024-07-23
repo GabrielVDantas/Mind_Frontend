@@ -1,7 +1,8 @@
 interface Transaction {
   id: number;
+  title: string;
   description: string;
-  amount: number
+  amount: number;
 }
 
 export default Transaction;
