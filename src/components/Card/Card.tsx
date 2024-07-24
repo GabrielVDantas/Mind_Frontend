@@ -18,8 +18,8 @@ const Card: React.FC<CardProps> = ({ transaction }) => {
       <H3 content={`R$: ${transaction.amount}`} />
       <P content={`Motivo: ${transaction.description}`} />
       <div className={styles.cardButtons}>
-        <UpdateTransaction transactionId={transaction.id} />
-        <DeleteTransaction transactionId={transaction.id}/>
+        <UpdateTransaction transactionId={transaction.id} type={transaction.type} />
+        <DeleteTransaction transactionId={transaction.id} type={transaction.type}/>
       </div>
     </article>
   );

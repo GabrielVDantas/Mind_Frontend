@@ -7,7 +7,7 @@ import TransactionRequests from "../../../service/transactionService/transaction
 import { useRouter } from "next/router";
 import DeleteOrUpdate from "../../../interfaces/DeleteOrUpdate";
 
-const UpdateTransaction: React.FC<DeleteOrUpdate> = ({ transactionId }) => {
+const UpdateTransaction: React.FC<DeleteOrUpdate> = ({ transactionId, type }) => {
   const [updateTransactionModal, setUpdateTransactionModal] = useState(false);
 
   const openUpdateTransactionModal = () => {
@@ -17,6 +17,7 @@ const UpdateTransaction: React.FC<DeleteOrUpdate> = ({ transactionId }) => {
   const closeUpdateTransactionModal = () => {
     setUpdateTransactionModal(false);
   };
+
   return (
     <>
       <Button
@@ -27,7 +28,9 @@ const UpdateTransaction: React.FC<DeleteOrUpdate> = ({ transactionId }) => {
       <Modal
         isOpen={updateTransactionModal}
         onClose={closeUpdateTransactionModal}
-        content={<UpdateTransactionForm transactionId={transactionId} closeModal={closeUpdateTransactionModal}/>}
+        content={<UpdateTransactionForm transactionId={transactionId} closeModal={closeUpdateTransactionModal}
+          type={`${type}`}
+        />}
       />
     </>
   );
@@ -35,8 +38,9 @@ const UpdateTransaction: React.FC<DeleteOrUpdate> = ({ transactionId }) => {
 
 export default UpdateTransaction;
 
-const UpdateTransactionForm: React.FC<DeleteOrUpdate> = ({ transactionId, closeModal }) => {
+const UpdateTransactionForm: React.FC<DeleteOrUpdate> = ({ transactionId, closeModal, type }) => {
   const router = useRouter();
+  
   const inputs: InputData[] = [
     {
       name: "amount",
@@ -69,7 +73,8 @@ const UpdateTransactionForm: React.FC<DeleteOrUpdate> = ({ transactionId, closeM
       inputs={inputs}
       buttonContent="Atualizar"
       submitForm={submitUpdateTransaction}
-      needCategory={true}
+      incomeForm={type === "reserva"}
+      expenseForm={type === "despesa"}
     />
   );
 };

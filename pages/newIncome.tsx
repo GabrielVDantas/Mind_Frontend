@@ -4,7 +4,7 @@ import Form from "../src/components/Form/Form";
 import InputData from "../src/interfaces/Input";
 import TransactionRequests from "../src/service/transactionService/transactionRequests";
 
-const NewProjectForm = () => {
+const NewIncomeForm = () => {
   const router = useRouter();
   const inputs: InputData[] = [
     {
@@ -32,18 +32,18 @@ const NewProjectForm = () => {
 
   return (
     <Form
-      h3Content="Insira as informações para adicionar um transação"
-      pContent="Coloque numeros negativos caso seja uma despesa"
+      h3Content="Nova receita"
+      pContent="Insira os dados para adicionar uma nova receita"
       inputs={inputs}
-      buttonContent="Criar"
+      buttonContent="Adicionar"
       submitForm={submitNewTransaction}
-      needCategory={true}
+      incomeForm={true}
     />
   );
 };
 
 const NewProject = () => {
-  return <Inside content={<NewProjectForm />} />;
+  return <Inside content={<NewIncomeForm />} />;
 };
 
 export default NewProject;

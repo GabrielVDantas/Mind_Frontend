@@ -24,11 +24,10 @@
   position: fixed;
 }
 
+.modalCard select {
+  width: 100%;
+}
+
 .divWithContent {
   width: 100%;
 }
-
-.divWithContent input {
-  width: 100%;
-}
-

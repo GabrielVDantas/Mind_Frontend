@@ -1,6 +1,5 @@
 import React, { ReactNode } from "react";
-import styles from "../Button.module.css";
-
+import styles from "../Button.module.css"
 interface ButtonProps {
   content: string | ReactNode;
   buttonAction?: () => void;

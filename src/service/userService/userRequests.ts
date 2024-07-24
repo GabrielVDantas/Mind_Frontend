@@ -7,6 +7,7 @@ class UserRequests {
   static async registerRequest(data: Record<string, unknown>) {
     try {
       const keys = ["username", "email", "password", "avatar"];
+      await PasswordService.comparePassword(data.password as string, data.confirmPassword as string)
       const formData = await RequestService.generateFormData(true, keys, data);
       return await BaseRequests.basePostRequest("/register", formData);
     } catch (error) {

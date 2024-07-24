@@ -41,7 +41,6 @@ class RequestService {
           formData[key] = data[key];
         }
       });
-      console.log(formData);
       return formData;
     }
   }

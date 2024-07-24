@@ -14,7 +14,7 @@ const Outside: React.FC<Outside> = ({ rightContent, leftContent }) => {
           {leftContent}
         </div>
         <div className={styles.banner}>
-          <img src="/src/public/side-image.png" />
+          <img src="https://wallpaperaccess.com/full/1104826.jpg" />
         </div>
       </section>
     );
@@ -22,7 +22,7 @@ const Outside: React.FC<Outside> = ({ rightContent, leftContent }) => {
     return (
       <section className={styles.outside}>
         <div className={styles.banner}>
-          <img src="/src/public/side-image.png" />
+          <img src="https://wallpaperaccess.com/full/1104826.jpg" />
         </div>
         <div className={styles.rightContent}>
           {rightContent}

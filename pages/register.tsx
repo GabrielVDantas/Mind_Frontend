@@ -31,7 +31,7 @@ const RegisterForm = () => {
 
   const submitRegister = async (data: Record<string, string>) => {
     const response = await UserRequests.registerRequest(data);
-    response && response.status === 201 && router.push("/login")
+    response && response.status === 201 && router.push("/firstLogin")
   };
 
   return (

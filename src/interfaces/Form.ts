@@ -5,7 +5,9 @@ interface FormProps<T> {
   buttonContent: string;
   submitForm: (data: T) => void;
   authForm?: string;
-  needCategory?: boolean;
+  incomeForm?: boolean;
+  expenseForm?: boolean;
+  modalForm?: boolean;
 }
 
 export default FormProps;

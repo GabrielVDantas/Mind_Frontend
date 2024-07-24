@@ -1,5 +1,6 @@
 import { LuHome } from "react-icons/lu";
-import { LuClipboardEdit } from "react-icons/lu";
+import { LuClipboardCheck } from "react-icons/lu";
+import { LuClipboardX } from "react-icons/lu";
 import { LuUser } from "react-icons/lu";
 import Anchor from "../Button/Anchor";
 import styles from "./Nav.module.css";
@@ -16,8 +17,14 @@ const Nav = () => {
         </ul>
         <ul>
           <Anchor
-            content={<LuClipboardEdit className={styles.iconStyle} />}
-            to="/newTransaction"
+            content={<LuClipboardCheck className={styles.iconStyle} />}
+            to="/newIncome"
+          />
+        </ul>
+        <ul>
+          <Anchor
+            content={<LuClipboardX className={styles.iconStyle} />}
+            to="/newExpense"
           />
         </ul>
         <ul>

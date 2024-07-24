@@ -7,7 +7,7 @@ import Input from "../Input";
 import P from "../Text/P";
 import FormProps from "../../interfaces/Form";
 import Select from "../Select/Select";
-import Categories from "../../interfaces/Category";
+import { ExpenseCategories, IncomeCategories } from "../../interfaces/Category";
 
 const Form = <T extends Record<string, unknown>>({
   h3Content,
@@ -16,15 +16,19 @@ const Form = <T extends Record<string, unknown>>({
   buttonContent,
   authForm,
   submitForm,
-  needCategory,
+  incomeForm,
+  expenseForm,
+  modalForm,
 }: FormProps<T>) => {
   const [data, setData] = useState<T>(() => ({} as T));
   const [selectedCategory, setSelectedCategory] = useState<string>("");
 
   const handleSubmitForm = async (e: FormEvent) => {
     e.preventDefault();
-    const formData = needCategory
-      ? { ...data, category: selectedCategory }
+    const formData = incomeForm
+      ? { ...data, category: selectedCategory, type: "reserva" }
+      : expenseForm
+      ? { ...data, category: selectedCategory, type: "despesa" }
       : data;
     submitForm(formData);
   };
@@ -55,7 +59,7 @@ const Form = <T extends Record<string, unknown>>({
   const handleCategoryChange = (value: string) => {
     setSelectedCategory(value);
   };
-
+  
   return (
     <form onSubmit={handleSubmitForm} className={styles.formStyle}>
       <H3 content={h3Content} />
@@ -70,12 +74,19 @@ const Form = <T extends Record<string, unknown>>({
             required={input.required}
             multiple={input.multiple}
             onChange={handleInputChange}
+            
           />
         </div>
       ))}
-      {needCategory && (
+      {incomeForm && (
         <Select
-          categories={Object.values(Categories)}
+          categories={Object.values(IncomeCategories)}
+          onChange={handleCategoryChange}
+        />
+      )}
+      {expenseForm && (
+        <Select
+          categories={Object.values(ExpenseCategories)}
           onChange={handleCategoryChange}
         />
       )}
