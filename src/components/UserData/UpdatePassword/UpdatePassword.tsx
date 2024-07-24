@@ -23,7 +23,7 @@ const UpdatePassword = ({icon}) => {
       <Modal
         isOpen={updatePasswordModal}
         onClose={handleClosePasswordModal}
-        content={<UpdatePasswordForm />}
+        content={<UpdatePasswordForm closeModal={handleClosePasswordModal}/>}
       />
     </>
   );

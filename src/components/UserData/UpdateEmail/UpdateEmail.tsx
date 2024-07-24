@@ -23,7 +23,7 @@ const UpdateEmail = ({ icon }) => {
       <Modal
         isOpen={updateEmailModal}
         onClose={handleCloseEmailModal}
-        content={<UpdateEmailForm />}
+        content={<UpdateEmailForm closeModal={handleCloseEmailModal}/>}
       />
     </>
   );

@@ -1,7 +1,8 @@
 import InputData from "../../../interfaces/Input";
+import UserRequests from "../../../service/userService/userRequests";
 import Form from "../Form";
 
-const UpdateAvatarForm = () => {
+const UpdateAvatarForm = ({closeModal}) => {
   const inputs: InputData[] = [
     {
       name: "avatar",
@@ -12,8 +13,8 @@ const UpdateAvatarForm = () => {
   ];
 
   const submitUpdate = async (data: Record<string, string>) => {
-    // const response = await UserRequests.registerRequest(data);
-    // response && response.status === 201 && router.push("/firstLogin")
+    const response = await UserRequests.updateUserRequest(data, "avatar");
+    response && response.status === 200 && closeModal()
   };
 
   return (

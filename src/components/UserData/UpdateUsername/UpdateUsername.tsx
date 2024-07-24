@@ -23,7 +23,7 @@ const UpdateUsername = ({icon}) => {
       <Modal
         isOpen={updateUsernameModal}
         onClose={handleCloseUsernameModal}
-        content={<UpdateUsernameForm />}
+        content={<UpdateUsernameForm closeModal={handleCloseUsernameModal}/>}
       />
     </>
   );

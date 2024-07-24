@@ -7,9 +7,9 @@ class TokenService {
     return localStorage.getItem("ACCESS_TOKEN_KEY");
   }
 
-  static removeToken() {
-    localStorage.removeItem("ACCESS_TOKEN_KEY");
-  }
+  // static removeToken() {
+  //   localStorage.removeItem("ACCESS_TOKEN_KEY");
+  // }
 }
 
 export default TokenService;

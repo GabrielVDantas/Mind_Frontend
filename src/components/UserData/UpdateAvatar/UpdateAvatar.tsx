@@ -24,7 +24,7 @@ const UpdateAvatar = ({ icon }) => {
       <Modal
         isOpen={updateAvatarModal}
         onClose={handleCloseAvatarModal}
-        content={<UpdateAvatarForm />}
+        content={<UpdateAvatarForm closeModal={handleCloseAvatarModal}/>}
       />
     </>
   );

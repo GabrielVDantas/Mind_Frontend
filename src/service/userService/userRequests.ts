@@ -7,7 +7,10 @@ class UserRequests {
   static async registerRequest(data: Record<string, unknown>) {
     try {
       const keys = ["username", "email", "password", "avatar"];
-      await PasswordService.comparePassword(data.password as string, data.confirmPassword as string)
+      await PasswordService.comparePassword(
+        data.password as string,
+        data.confirmPassword as string
+      );
       const formData = await RequestService.generateFormData(true, keys, data);
       return await BaseRequests.basePostRequest("/register", formData);
     } catch (error) {
@@ -38,28 +41,44 @@ class UserRequests {
   }
 
   static async updateUserRequest(data: Record<string, string>, about: string) {
-    const keys = [`${about}`];
-    about === "password" &&
-      (await PasswordService.comparePassword(
-        data.password,
-        data.confirmPassword
+    try {
+      const keys = [`${about}`];
+      about === "password" &&
+        (await PasswordService.comparePassword(
+          data.password,
+          data.confirmPassword
+        ));
+      let formData: Record<string, unknown> | FormData;
+      let header: {};
+      if (about === "avatar") {
+        formData = await RequestService.generateFormData(true, keys, data);
+        header = await RequestService.generateRequestHeader(true);
+      } else {
+        formData = await RequestService.generateFormData(false, keys, data);
+        header = await RequestService.generateRequestHeader(false);
+      }
+      console.log(await BaseRequests.basePutRequest(
+        `/update-${about}`,
+        formData,
+        header
       ));
-    const formData = await RequestService.generateFormData(false, keys, data);
-    const header = await RequestService.generateRequestHeader(false);
-    return await BaseRequests.basePutRequest(
-      `/update-${about}`,
-      formData,
-      header
-    );
+      return await BaseRequests.basePutRequest(
+        `/update-${about}`,
+        formData,
+        header
+      );
+    } catch (error) {
+      console.error(error);
+    }
   }
 
-  static async deleteUserRequest(data: Record<string, string>) {
-    await PasswordService.compareKeyword(data.keyword);
-    const header = await RequestService.generateRequestHeader(false);
-    const response = await BaseRequests.baseDeleteRequest("/delete", header);
-    TokenService.removeToken();
-    return response;
-  }
+  // static async deleteUserRequest(data: Record<string, string>) {
+  //   await PasswordService.compareKeyword(data.keyword);
+  //   const header = await RequestService.generateRequestHeader(false);
+  //   const response = await BaseRequests.baseDeleteRequest("/delete", header);
+  //   TokenService.removeToken();
+  //   return response;
+  // }
 }
 
 export default UserRequests;
