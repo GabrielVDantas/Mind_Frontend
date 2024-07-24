@@ -1,15 +1,9 @@
 import { useState } from "react";
 import Modal from "../../Modal";
-import User from "../../../interfaces/User";
-import P from "../../Text/P";
 import UpdateEmailForm from "../../Form/UpdateUserForm/UpdateEmailForm";
 import Button from "../../Button/Button";
 
-interface UserDataProps {
-  user: User;
-}
-
-const UpdateEmail: React.FC<UserDataProps> = ({ user }) => {
+const UpdateEmail = ({ icon }) => {
   const [updateEmailModal, setUpdateEmailModal] = useState(false);
 
   const handleOpenEmailModal = () => {
@@ -22,9 +16,9 @@ const UpdateEmail: React.FC<UserDataProps> = ({ user }) => {
   return (
     <>
       <Button
-        content={<P content={user.userData.email} />}
+        content={icon}
         buttonAction={handleOpenEmailModal}
-        openModal={true}
+        icon={true}
       />
       <Modal
         isOpen={updateEmailModal}

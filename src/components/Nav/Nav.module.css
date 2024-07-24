@@ -5,12 +5,16 @@
   position: fixed;
 }
 
+.navStyle ul {
+  margin-bottom: 0.5rem;
+}
+
 .navStyle li {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  margin: 1rem;
+  margin: 0.5rem;
 }
 
 .navStyle a {

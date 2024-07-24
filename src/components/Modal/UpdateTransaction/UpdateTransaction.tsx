@@ -4,7 +4,6 @@ import Modal from "../Modal";
 import InputData from "../../../interfaces/Input";
 import Form from "../../Form/Form";
 import TransactionRequests from "../../../service/transactionService/transactionRequests";
-import { useRouter } from "next/router";
 import DeleteOrUpdate from "../../../interfaces/DeleteOrUpdate";
 
 const UpdateTransaction: React.FC<DeleteOrUpdate> = ({ transactionId, type }) => {
@@ -38,9 +37,7 @@ const UpdateTransaction: React.FC<DeleteOrUpdate> = ({ transactionId, type }) =>
 
 export default UpdateTransaction;
 
-const UpdateTransactionForm: React.FC<DeleteOrUpdate> = ({ transactionId, closeModal, type }) => {
-  const router = useRouter();
-  
+const UpdateTransactionForm: React.FC<DeleteOrUpdate> = ({ transactionId, closeModal, type }) => {  
   const inputs: InputData[] = [
     {
       name: "amount",

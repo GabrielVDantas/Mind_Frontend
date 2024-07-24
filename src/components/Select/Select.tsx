@@ -9,7 +9,6 @@ interface CategorySelectProps {
 const Select: React.FC<CategorySelectProps> = ({ categories, onChange }) => {
   return (
     <select onChange={(e) => onChange(e.target.value)} className={styles.selectStyle}>
-      <option value="">Selecione uma categoria</option>
       {categories.map((category) => (
         <option key={category} value={category}>
           {category}

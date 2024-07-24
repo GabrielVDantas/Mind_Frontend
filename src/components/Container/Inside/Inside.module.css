@@ -5,6 +5,7 @@
 }
 
 .insideContent {
-  margin: 2% 2% 2% 8%;
+  margin: 2% 2% 2% 5%;
   width: 100%;
+  flex-grow: 1;
 }

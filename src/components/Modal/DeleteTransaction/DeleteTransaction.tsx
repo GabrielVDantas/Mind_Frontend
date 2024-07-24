@@ -4,10 +4,12 @@ import Modal from "../Modal";
 import InputData from "../../../interfaces/Input";
 import Form from "../../Form/Form";
 import TransactionRequests from "../../../service/transactionService/transactionRequests";
-import { useRouter } from "next/router";
 import DeleteOrUpdate from "../../../interfaces/DeleteOrUpdate";
 
-const DeleteTransaction: React.FC<DeleteOrUpdate> = ({transactionId}) => {
+const DeleteTransaction: React.FC<DeleteOrUpdate> = ({
+  transactionId,
+  type,
+}) => {
   const [deleteTransactionModal, setDeleteTransactionModal] = useState(false);
 
   const openDeleteTransactionModal = () => {
@@ -28,7 +30,13 @@ const DeleteTransaction: React.FC<DeleteOrUpdate> = ({transactionId}) => {
       <Modal
         isOpen={deleteTransactionModal}
         onClose={closeDeleteTransactionModal}
-        content={<DeleteTransactionForm transactionId={transactionId}/>}
+        content={
+          <DeleteTransactionForm
+            transactionId={transactionId}
+            closeModal={closeDeleteTransactionModal}
+            type={`${type}`}
+          />
+        }
       />
     </>
   );
@@ -36,8 +44,10 @@ const DeleteTransaction: React.FC<DeleteOrUpdate> = ({transactionId}) => {
 
 export default DeleteTransaction;
 
-const DeleteTransactionForm: React.FC<DeleteOrUpdate> = ({transactionId}) => {
-    const router = useRouter();
+const DeleteTransactionForm: React.FC<DeleteOrUpdate> = ({
+  transactionId,
+  closeModal,
+}) => {
   const inputs: InputData[] = [
     {
       name: "keyword",
@@ -48,8 +58,11 @@ const DeleteTransactionForm: React.FC<DeleteOrUpdate> = ({transactionId}) => {
   ];
 
   const submitDeleteTransaction = async (data: Record<string, string>) => {
-    const response = await TransactionRequests.deleteTransactionRequest(data, transactionId);
-    response && response.status === 204 && router.push("/feed");
+    const response = await TransactionRequests.deleteTransactionRequest(
+      data,
+      transactionId
+    );
+    response && response.status === 204 && closeModal();
   };
 
   return (

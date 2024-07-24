@@ -1,15 +1,9 @@
 import { useState } from "react";
 import Modal from "../../Modal";
-import Strong from "../../Text/Strong";
-import User from "../../../interfaces/User";
 import UpdateUsernameForm from "../../Form/UpdateUserForm/UpdateUsernameForm";
 import Button from "../../Button/Button";
 
-interface UserDataProps {
-  user: User;
-}
-
-const UpdateUsername: React.FC<UserDataProps> = ({ user }) => {
+const UpdateUsername = ({icon}) => {
   const [updateUsernameModal, setUpdateUsernameModal] = useState(false);
 
   const handleOpenUsernameModal = () => {
@@ -22,9 +16,9 @@ const UpdateUsername: React.FC<UserDataProps> = ({ user }) => {
   return (
     <>
       <Button
-        content={<Strong content={user.userData.username} />}
+        content={icon}
         buttonAction={handleOpenUsernameModal}
-        openModal={true}
+        icon={true}
       />
       <Modal
         isOpen={updateUsernameModal}

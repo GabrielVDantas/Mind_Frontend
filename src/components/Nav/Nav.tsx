@@ -4,36 +4,25 @@ import { LuClipboardX } from "react-icons/lu";
 import { LuUser } from "react-icons/lu";
 import Anchor from "../Button/Anchor";
 import styles from "./Nav.module.css";
+import React from "react";
+
+const navItems = [
+  { icon: <LuHome className={styles.iconStyle} />, to: "/feed" },
+  { icon: <LuClipboardCheck className={styles.iconStyle} />, to: "/newIncome" },
+  { icon: <LuClipboardX className={styles.iconStyle} />, to: "/newExpense" },
+  { icon: <LuUser className={styles.iconStyle} />, to: "/profile" },
+];
 
 const Nav = () => {
   return (
     <nav className={styles.navStyle}>
-      <li>
-        <ul>
-          <Anchor
-            content={<LuHome className={styles.iconStyle} />}
-            to="/feed"
-          />
-        </ul>
-        <ul>
-          <Anchor
-            content={<LuClipboardCheck className={styles.iconStyle} />}
-            to="/newIncome"
-          />
-        </ul>
-        <ul>
-          <Anchor
-            content={<LuClipboardX className={styles.iconStyle} />}
-            to="/newExpense"
-          />
-        </ul>
-        <ul>
-          <Anchor
-            content={<LuUser className={styles.iconStyle} />}
-            to="/profile"
-          />
-        </ul>
-      </li>
+      <ul>
+        {navItems.map((item, index) => (
+          <li key={index}>
+            <Anchor content={item.icon} to={item.to} />
+          </li>
+        ))}
+      </ul>
     </nav>
   );
 };
