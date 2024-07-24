@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import H3 from "../Text/H3";
 import Strong from "../Text/Strong";
 import P from "../Text/P";
@@ -13,26 +13,54 @@ import UpdateEmail from "./UpdateEmail/UpdateEmail";
 import UpdatePassword from "./UpdatePassword/UpdatePassword";
 import UpdateAvatar from "./UpdateAvatar/UpdateAvatar";
 
-const userActions = [
-  <UpdateUsername icon={<LuTag />} key={"updateUsername"}/>,
-  <UpdateEmail icon={<LuMail />} key={"updateEmail"}/>,
-  <UpdateAvatar icon={<LuSticker />} key={"updateAvatar"}/>,
-  <UpdatePassword icon={<LuLock />} key={"updatePassword"}/>,
-];
+const UserData: React.FC<User> = ({ ...user }) => {
+  const [userData, setUserData] = useState({
+    username: user.userDataWithoutPassAndAvatar.username,
+    email: user.userDataWithoutPassAndAvatar.email,
+    avatar: user.avatar,
+  });
 
-const UserData: React.FC<User> = ({ userDataWithoutPassAndAvatar, avatar }) => {
+  const handleUserDataUpdate = (newData: Record<string, unknown>) => {
+    console.log(newData);
+    
+    setUserData((prevData) => ({
+      ...prevData,
+      ...newData,
+    }));
+  };
+
+  const userActions = [
+    <UpdateUsername
+      icon={<LuTag />}
+      key={"updateUsername"}
+      onUserDataUpdate={handleUserDataUpdate}
+    />,
+    <UpdateEmail
+      icon={<LuMail />}
+      key={"updateEmail"}
+      onUserDataUpdate={handleUserDataUpdate}
+    />,
+    <UpdateAvatar
+      icon={<LuSticker />}
+      key={"updateAvatar"}
+      onUserDataUpdate={handleUserDataUpdate}
+    />,
+    <UpdatePassword icon={<LuLock />} key={"updatePassword"} />,
+  ];
+
   return (
     <article
       className={styles.userArticle}
-      key={userDataWithoutPassAndAvatar.id}
+      key={user.userDataWithoutPassAndAvatar.id}
     >
-      <Strong content={`Olá, ${userDataWithoutPassAndAvatar.username}!`} />
+      <Strong content={`Olá, ${userData.username}!`} />
       <H3
-        content={`Atualmente, seu saldo é de R$: ${userDataWithoutPassAndAvatar.currentBalance}`} />
-      <P content={`E-mail: ${userDataWithoutPassAndAvatar.email}`} />
-      <img src={avatar} alt="Foto de perfil do usuário"/>
+        content={`Atualmente, seu saldo é de R$: ${user.userDataWithoutPassAndAvatar.currentBalance}`}
+      />
+      <P content={`E-mail: ${userData.email}`} />
+      <img src={userData.avatar} alt="Foto de perfil do usuário" />
       <div className={styles.userActions}>
-        {userActions.map((item) => (item))}
+        {userActions.map((item) => item)}
       </div>
     </article>
   );

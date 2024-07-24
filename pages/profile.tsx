@@ -10,7 +10,7 @@ const Profile = () => {
   
     useEffect(() => {
         async function getUser() {
-          const response = await UserRequests.getUserRequest();
+          const response = await UserRequests.getUserRequest();          
           response && response.status === 200 && setUser(response.data.user);
         }
         getUser();

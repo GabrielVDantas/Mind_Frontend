@@ -4,9 +4,13 @@ import InputData from "../../../interfaces/Input";
 import Form from "../../Form/Form";
 import TransactionRequests from "../../../service/transactionService/transactionRequests";
 import Modal from "../../Modal";
-import DeleteOrUpdateTransaction from "../../../interfaces/DeleteOrUpdateTransaction";
 
-const UpdateTransactionForm: React.FC<DeleteOrUpdateTransaction> = ({ transactionId, closeModal, type }) => {  
+const UpdateTransactionForm = ({
+  transactionId,
+  closeModal,
+  type,
+  onDataUpdate,
+}) => {
   const inputs: InputData[] = [
     {
       name: "amount",
@@ -27,8 +31,11 @@ const UpdateTransactionForm: React.FC<DeleteOrUpdateTransaction> = ({ transactio
       data,
       transactionId
     );
-    response && response.status === 200 && closeModal();
+    if (response && response.status === 200) {
+      onDataUpdate(response.data.transaction);
+      closeModal();
     }
+  };
 
   return (
     <Form
@@ -41,15 +48,15 @@ const UpdateTransactionForm: React.FC<DeleteOrUpdateTransaction> = ({ transactio
       expenseForm={type === "despesa"}
     />
   );
-}
+};
 
-const UpdateTransaction: React.FC<DeleteOrUpdateTransaction> = ({ transactionId, type }) => {
+const UpdateTransaction = ({ transactionId, type, onDataUpdate }) => {
   const [updateTransactionModal, setUpdateTransactionModal] = useState(false);
 
   const openUpdateTransactionModal = () => setUpdateTransactionModal(true);
-  
+
   const closeUpdateTransactionModal = () => setUpdateTransactionModal(false);
-  
+
   return (
     <>
       <Button
@@ -60,9 +67,14 @@ const UpdateTransaction: React.FC<DeleteOrUpdateTransaction> = ({ transactionId,
       <Modal
         isOpen={updateTransactionModal}
         onClose={closeUpdateTransactionModal}
-        content={<UpdateTransactionForm transactionId={transactionId} closeModal={closeUpdateTransactionModal}
-          type={`${type}`}
-        />}
+        content={
+          <UpdateTransactionForm
+            transactionId={transactionId}
+            closeModal={closeUpdateTransactionModal}
+            type={`${type}`}
+            onDataUpdate={onDataUpdate}
+          />
+        }
       />
     </>
   );

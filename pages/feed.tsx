@@ -11,7 +11,9 @@ const Feed = () => {
     async function feed() {
       try {
         const response = await TransactionRequests.getFeedTransactionsRequest();
-        response && response.status === 200 && setTransactions(response.data.transaction);
+        response &&
+          response.status === 200 &&
+          setTransactions(response.data.transaction);
       } catch (error) {
         console.error(error);
       }
@@ -19,13 +21,25 @@ const Feed = () => {
     feed();
   }, []);
 
+  const handleDeleteTransaction = (transactionId) => {
+    setTransactions((prevTransactions) =>
+      prevTransactions.filter((transaction) => transaction.id !== transactionId)
+    );
+  };
+
   return (
     <Inside
       content={
         transactions.length === 0 ? (
           <H2 content="Estamos buscando as transações (ou talvez você não tenha criado uma ainda)..." />
         ) : (
-          transactions.map((transaction) => <Card transaction={transaction} key={transaction.id}/>)
+          transactions.map((transaction) => (
+            <Card
+              transaction={transaction}
+              key={transaction.id}
+              onDelete={handleDeleteTransaction}
+            />
+          ))
         )
       }
     />

@@ -2,7 +2,7 @@ import InputData from "../../../interfaces/Input";
 import UserRequests from "../../../service/userService/userRequests";
 import Form from "../../Form/Form";
 
-const UpdateEmailForm = ({closeModal}) => {
+const UpdateEmailForm = ({ closeModal, onUserDataUpdate }) => {
   const inputs: InputData[] = [
     {
       name: "email",
@@ -14,7 +14,10 @@ const UpdateEmailForm = ({closeModal}) => {
 
   const submitUpdate = async (data: Record<string, string>) => {
     const response = await UserRequests.updateUserRequest(data, "email");
-    response && response.status === 200 && closeModal();
+    if (response && response.status === 200) {
+      onUserDataUpdate(response.data.user.updatedUser);
+      closeModal();
+    }
   };
   return (
     <Form

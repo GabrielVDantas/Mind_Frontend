@@ -4,11 +4,12 @@ import Modal from "../../Modal/Modal";
 import InputData from "../../../interfaces/Input";
 import Form from "../../Form/Form";
 import TransactionRequests from "../../../service/transactionService/transactionRequests";
-import DeleteOrUpdateTransaction from "../../../interfaces/DeleteOrUpdateTransaction";
 
-const DeleteTransactionForm: React.FC<DeleteOrUpdateTransaction> = ({
+const DeleteTransactionForm = ({
   transactionId,
   closeModal,
+  onDataUpdate,
+  onDelete
 }) => {
   const inputs: InputData[] = [
     {
@@ -24,7 +25,11 @@ const DeleteTransactionForm: React.FC<DeleteOrUpdateTransaction> = ({
       data,
       transactionId
     );
-    response && response.status === 204 && closeModal();
+    if (response && response.status === 204) {      
+      onDataUpdate(response.data)
+      onDelete(transactionId);
+      closeModal();
+    }
   };
 
   return (
@@ -38,9 +43,10 @@ const DeleteTransactionForm: React.FC<DeleteOrUpdateTransaction> = ({
   );
 };
 
-const DeleteTransaction: React.FC<DeleteOrUpdateTransaction> = ({
+const DeleteTransaction = ({
   transactionId,
-  type,
+  onDataUpdate,
+  onDelete
 }) => {
   const [deleteTransactionModal, setDeleteTransactionModal] = useState(false);
 
@@ -62,7 +68,8 @@ const DeleteTransaction: React.FC<DeleteOrUpdateTransaction> = ({
           <DeleteTransactionForm
             transactionId={transactionId}
             closeModal={closeDeleteTransactionModal}
-            type={`${type}`}
+            onDataUpdate={onDataUpdate}
+            onDelete={onDelete}
           />
         }
       />

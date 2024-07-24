@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import H3 from "../Text/H3";
 import P from "../Text/P";
 import styles from "./Card.module.css";
@@ -9,17 +9,32 @@ import DeleteTransaction from "./DeleteTransaction/DeleteTransaction";
 
 interface CardProps {
   transaction: Transaction;
+  onDelete: (transactionId: string) => void;
 }
 
-const Card: React.FC<CardProps> = ({ transaction }) => {
+const Card: React.FC<CardProps> = ({ transaction, onDelete }) => {
+  const [cardData, setCardData] = useState({
+    category: transaction.category,
+    amount: transaction.amount,
+    description: transaction.description,
+  });
+
+  const handleCardDataUpdate = (newData: Record<string, unknown>) => {
+    setCardData((prevData) => ({
+      ...prevData,
+      ...newData,
+    }));
+  };
+  
+
   return (
     <article className={styles.cardContainer} key={transaction.id}>      
-      <Strong content={`Categoria: ${transaction.category.name}`}/>
-      <H3 content={`R$: ${transaction.amount}`} />
-      <P content={`Motivo: ${transaction.description}`} />
+      <Strong content={`Categoria: ${cardData.category.name}`}/>
+      <H3 content={`R$: ${cardData.amount}`} />
+      <P content={`Motivo: ${cardData.description}`} />
       <div className={styles.cardButtons}>
-        <UpdateTransaction transactionId={transaction.id} type={transaction.type} />
-        <DeleteTransaction transactionId={transaction.id} type={transaction.type}/>
+        <UpdateTransaction transactionId={transaction.id} type={transaction.type}  onDataUpdate={handleCardDataUpdate}/>
+        <DeleteTransaction transactionId={transaction.id} onDataUpdate={handleCardDataUpdate} onDelete={onDelete}/>
       </div>
     </article>
   );

@@ -2,7 +2,7 @@ import InputData from "../../../interfaces/Input";
 import UserRequests from "../../../service/userService/userRequests";
 import Form from "../../Form/Form";
 
-const UpdateAvatarForm = ({closeModal}) => {
+const UpdateAvatarForm = ({ closeModal, onUserDataUpdate }) => {
   const inputs: InputData[] = [
     {
       name: "avatar",
@@ -14,7 +14,10 @@ const UpdateAvatarForm = ({closeModal}) => {
 
   const submitUpdate = async (data: Record<string, string>) => {
     const response = await UserRequests.updateUserRequest(data, "avatar");
-    response && response.status === 200 && closeModal()
+    if (response && response.status === 200) {
+      onUserDataUpdate(response.data.user);
+      closeModal();
+    }
   };
 
   return (
