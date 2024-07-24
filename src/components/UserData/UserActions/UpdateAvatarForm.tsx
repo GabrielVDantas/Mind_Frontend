@@ -1,6 +1,6 @@
 import InputData from "../../../interfaces/Input";
 import UserRequests from "../../../service/userService/userRequests";
-import Form from "../Form";
+import Form from "../../Form/Form";
 
 const UpdateAvatarForm = ({closeModal}) => {
   const inputs: InputData[] = [

@@ -4,40 +4,35 @@ import Strong from "../Text/Strong";
 import P from "../Text/P";
 import User from "../../interfaces/User";
 import styles from "./UserData.module.css";
-import Button from "../Button/Button";
 import { LuLock } from "react-icons/lu";
-import { LuKey } from "react-icons/lu";
 import { LuMail } from "react-icons/lu";
-import { LuShirt } from "react-icons/lu";
+import { LuTag } from "react-icons/lu";
+import { LuSticker } from "react-icons/lu";
 import UpdateUsername from "./UpdateUsername/UpdateUsername";
 import UpdateEmail from "./UpdateEmail/UpdateEmail";
 import UpdatePassword from "./UpdatePassword/UpdatePassword";
 import UpdateAvatar from "./UpdateAvatar/UpdateAvatar";
 
-const userIcons = [
-  <LuKey className={styles.iconStyle} />,
-  <LuMail className={styles.iconStyle} />,
-  <LuShirt className={styles.iconStyle} />,
-  <LuLock className={styles.iconStyle} />,
+const userActions = [
+  <UpdateUsername icon={<LuTag />} key={"updateUsername"}/>,
+  <UpdateEmail icon={<LuMail />} key={"updateEmail"}/>,
+  <UpdateAvatar icon={<LuSticker />} key={"updateAvatar"}/>,
+  <UpdatePassword icon={<LuLock />} key={"updatePassword"}/>,
 ];
 
-const UserData: React.FC<User> = ({ ...user }) => {
+const UserData: React.FC<User> = ({ userDataWithoutPassAndAvatar, avatar }) => {
   return (
     <article
       className={styles.userArticle}
-      key={user.userDataWithoutPassAndAvatar.id}
+      key={userDataWithoutPassAndAvatar.id}
     >
-      <Strong content={`Olá, ${user.userDataWithoutPassAndAvatar.username}!`} />
+      <Strong content={`Olá, ${userDataWithoutPassAndAvatar.username}!`} />
       <H3
-        content={`Atualmente, seu saldo é de R$: ${user.userDataWithoutPassAndAvatar.currentBalance}`}
-      />
-      <P content={`E-mail: ${user.userDataWithoutPassAndAvatar.email}`} />
-      <img src={user.avatar} />
+        content={`Atualmente, seu saldo é de R$: ${userDataWithoutPassAndAvatar.currentBalance}`} />
+      <P content={`E-mail: ${userDataWithoutPassAndAvatar.email}`} />
+      <img src={avatar} alt="Foto de perfil do usuário"/>
       <div className={styles.userActions}>
-        <UpdateUsername icon={<Button content={<LuKey />} icon={true} />}/>
-        <UpdateEmail icon={<Button content={<LuMail />} icon={true} />}/>
-        <UpdateAvatar icon={<Button content={<LuShirt />} icon={true} />}/>
-        <UpdatePassword icon={<Button content={<LuLock />} icon={true} />}/>
+        {userActions.map((item) => (item))}
       </div>
     </article>
   );

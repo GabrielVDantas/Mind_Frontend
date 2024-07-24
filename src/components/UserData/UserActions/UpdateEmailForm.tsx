@@ -1,26 +1,25 @@
-import Form from "../Form";
 import InputData from "../../../interfaces/Input";
 import UserRequests from "../../../service/userService/userRequests";
+import Form from "../../Form/Form";
 
-const UpdateUsernameForm = ({closeModal}) => {
+const UpdateEmailForm = ({closeModal}) => {
   const inputs: InputData[] = [
     {
-      name: "username",
-      type: "text",
-      placeholder: "Novo nome...",
+      name: "email",
+      type: "email",
+      placeholder: "Novo e-mail...",
       required: true,
     },
   ];
 
   const submitUpdate = async (data: Record<string, string>) => {
-    const response = await UserRequests.updateUserRequest(data, "username");
+    const response = await UserRequests.updateUserRequest(data, "email");
     response && response.status === 200 && closeModal();
   };
-
   return (
     <Form
-      h3Content="Alterar nome"
-      pContent="Insira seu novo nome"
+      h3Content="Alterar e-mail"
+      pContent="Insira seu novo e-mail"
       inputs={inputs}
       buttonContent="Alterar"
       submitForm={submitUpdate}
@@ -28,4 +27,4 @@ const UpdateUsernameForm = ({closeModal}) => {
   );
 };
 
-export default UpdateUsernameForm;
+export default UpdateEmailForm;

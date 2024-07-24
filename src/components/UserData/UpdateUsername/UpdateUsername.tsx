@@ -1,18 +1,15 @@
 import { useState } from "react";
 import Modal from "../../Modal";
-import UpdateUsernameForm from "../../Form/UpdateUserForm/UpdateUsernameForm";
 import Button from "../../Button/Button";
+import UpdateUsernameForm from "../UserActions/UpdateUsernameForm";
 
 const UpdateUsername = ({icon}) => {
   const [updateUsernameModal, setUpdateUsernameModal] = useState(false);
 
-  const handleOpenUsernameModal = () => {
-    setUpdateUsernameModal(true);
-  };
+  const handleOpenUsernameModal = () => setUpdateUsernameModal(true);
+  
+  const handleCloseUsernameModal = () => setUpdateUsernameModal(false);
 
-  const handleCloseUsernameModal = () => {
-    setUpdateUsernameModal(false);
-  };
   return (
     <>
       <Button

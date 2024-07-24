@@ -57,11 +57,6 @@ class UserRequests {
         formData = await RequestService.generateFormData(false, keys, data);
         header = await RequestService.generateRequestHeader(false);
       }
-      console.log(await BaseRequests.basePutRequest(
-        `/update-${about}`,
-        formData,
-        header
-      ));
       return await BaseRequests.basePutRequest(
         `/update-${about}`,
         formData,
@@ -72,13 +67,17 @@ class UserRequests {
     }
   }
 
-  // static async deleteUserRequest(data: Record<string, string>) {
-  //   await PasswordService.compareKeyword(data.keyword);
-  //   const header = await RequestService.generateRequestHeader(false);
-  //   const response = await BaseRequests.baseDeleteRequest("/delete", header);
-  //   TokenService.removeToken();
-  //   return response;
-  // }
+  static async deleteUserRequest(data: Record<string, string>) {
+    try {
+      await PasswordService.compareKeyword(data.keyword);
+      const header = await RequestService.generateRequestHeader(false);
+      const response = await BaseRequests.baseDeleteRequest("/delete", header);
+      TokenService.removeToken();
+      return response;
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }
 
 export default UserRequests;

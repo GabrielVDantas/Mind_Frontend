@@ -1,6 +1,6 @@
-import Form from "../Form";
 import InputData from "../../../interfaces/Input";
 import UserRequests from "../../../service/userService/userRequests";
+import Form from "../../Form/Form";
 
 const UpdatePasswordForm = ({closeModal}) => {
   const inputs: InputData[] = [

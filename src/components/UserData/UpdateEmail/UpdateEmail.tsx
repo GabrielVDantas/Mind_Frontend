@@ -1,18 +1,16 @@
 import { useState } from "react";
 import Modal from "../../Modal";
-import UpdateEmailForm from "../../Form/UpdateUserForm/UpdateEmailForm";
 import Button from "../../Button/Button";
+import UpdateEmailForm from "../UserActions/UpdateEmailForm";
 
 const UpdateEmail = ({ icon }) => {
   const [updateEmailModal, setUpdateEmailModal] = useState(false);
 
-  const handleOpenEmailModal = () => {
-    setUpdateEmailModal(true);
-  };
+  const handleOpenEmailModal = () => setUpdateEmailModal(true);
+  
 
-  const handleCloseEmailModal = () => {
-    setUpdateEmailModal(false);
-  };
+  const handleCloseEmailModal = () => setUpdateEmailModal(false);
+ 
   return (
     <>
       <Button

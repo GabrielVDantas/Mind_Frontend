@@ -1,18 +1,14 @@
 import { useState } from "react";
 import Modal from "../../Modal";
 import Button from "../../Button/Button";
-import UpdateAvatarForm from "../../Form/UpdateUserForm/UpdateAvatarForm";
+import UpdateAvatarForm from "../UserActions/UpdateAvatarForm";
 
 const UpdateAvatar = ({ icon }) => {
   const [updateAvatarModal, setUpdateAvatarModal] = useState(false);
 
-  const handleOpenAvatarModal = () => {
-    setUpdateAvatarModal(true);
-  };
+  const handleOpenAvatarModal = () => setUpdateAvatarModal(true);
 
-  const handleCloseAvatarModal = () => {
-    setUpdateAvatarModal(false);
-  };
+  const handleCloseAvatarModal = () => setUpdateAvatarModal(false);
 
   return (
     <>

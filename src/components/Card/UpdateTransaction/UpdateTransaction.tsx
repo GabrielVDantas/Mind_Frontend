@@ -1,43 +1,12 @@
 import React, { useState } from "react";
 import Button from "../../Button/Button";
-import Modal from "../Modal";
 import InputData from "../../../interfaces/Input";
 import Form from "../../Form/Form";
 import TransactionRequests from "../../../service/transactionService/transactionRequests";
-import DeleteOrUpdate from "../../../interfaces/DeleteOrUpdate";
+import Modal from "../../Modal";
+import DeleteOrUpdateTransaction from "../../../interfaces/DeleteOrUpdateTransaction";
 
-const UpdateTransaction: React.FC<DeleteOrUpdate> = ({ transactionId, type }) => {
-  const [updateTransactionModal, setUpdateTransactionModal] = useState(false);
-
-  const openUpdateTransactionModal = () => {
-    setUpdateTransactionModal(true);
-  };
-
-  const closeUpdateTransactionModal = () => {
-    setUpdateTransactionModal(false);
-  };
-
-  return (
-    <>
-      <Button
-        content="Atualizar"
-        buttonAction={openUpdateTransactionModal}
-        openModal={true}
-      />
-      <Modal
-        isOpen={updateTransactionModal}
-        onClose={closeUpdateTransactionModal}
-        content={<UpdateTransactionForm transactionId={transactionId} closeModal={closeUpdateTransactionModal}
-          type={`${type}`}
-        />}
-      />
-    </>
-  );
-};
-
-export default UpdateTransaction;
-
-const UpdateTransactionForm: React.FC<DeleteOrUpdate> = ({ transactionId, closeModal, type }) => {  
+const UpdateTransactionForm: React.FC<DeleteOrUpdateTransaction> = ({ transactionId, closeModal, type }) => {  
   const inputs: InputData[] = [
     {
       name: "amount",
@@ -58,10 +27,8 @@ const UpdateTransactionForm: React.FC<DeleteOrUpdate> = ({ transactionId, closeM
       data,
       transactionId
     );
-    if (response && response.status === 200) {
-      closeModal();
+    response && response.status === 200 && closeModal();
     }
-  };
 
   return (
     <Form
@@ -74,4 +41,31 @@ const UpdateTransactionForm: React.FC<DeleteOrUpdate> = ({ transactionId, closeM
       expenseForm={type === "despesa"}
     />
   );
+}
+
+const UpdateTransaction: React.FC<DeleteOrUpdateTransaction> = ({ transactionId, type }) => {
+  const [updateTransactionModal, setUpdateTransactionModal] = useState(false);
+
+  const openUpdateTransactionModal = () => setUpdateTransactionModal(true);
+  
+  const closeUpdateTransactionModal = () => setUpdateTransactionModal(false);
+  
+  return (
+    <>
+      <Button
+        content="Atualizar"
+        buttonAction={openUpdateTransactionModal}
+        openModal={true}
+      />
+      <Modal
+        isOpen={updateTransactionModal}
+        onClose={closeUpdateTransactionModal}
+        content={<UpdateTransactionForm transactionId={transactionId} closeModal={closeUpdateTransactionModal}
+          type={`${type}`}
+        />}
+      />
+    </>
+  );
 };
+
+export default UpdateTransaction;
