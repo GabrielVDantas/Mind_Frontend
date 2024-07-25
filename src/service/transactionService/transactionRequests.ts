@@ -14,7 +14,6 @@ class TransactionRequests {
 
   static async newTransactionRequest(data: Record<string, unknown>) {
     try {
-      console.log(data);
       const keys = ["amount", "description", "category", "type"];
       const formData = await RequestService.generateFormData(false, keys, data);
       const header = await RequestService.generateRequestHeader(false);

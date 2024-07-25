@@ -25,16 +25,25 @@ const Card: React.FC<CardProps> = ({ transaction, onDelete }) => {
       ...newData,
     }));
   };
-  
 
   return (
-    <article className={styles.cardContainer} key={transaction.id}>      
-      <Strong content={`Categoria: ${cardData.category.name}`}/>
+    <article className={styles.cardContainer} key={transaction.id}>
+      <Strong content={`Categoria: ${cardData.category.name}`} />
       <H3 content={`R$: ${cardData.amount}`} />
       <P content={`Motivo: ${cardData.description}`} />
+      <P content={`Data: ${transaction.createdAt}`} />
       <div className={styles.cardButtons}>
-        <UpdateTransaction transactionId={transaction.id} type={transaction.type}  onDataUpdate={handleCardDataUpdate}/>
-        <DeleteTransaction transactionId={transaction.id} onDataUpdate={handleCardDataUpdate} onDelete={onDelete}/>
+        <UpdateTransaction
+          transactionId={transaction.id}
+          type={transaction.type}
+          onDataUpdate={handleCardDataUpdate}
+        />
+        <DeleteTransaction
+          transactionId={transaction.id}
+          type={transaction.type}
+          onDataUpdate={handleCardDataUpdate}
+          onDelete={onDelete}
+        />
       </div>
     </article>
   );

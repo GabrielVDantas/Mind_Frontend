@@ -9,7 +9,8 @@ const DeleteTransactionForm = ({
   transactionId,
   closeModal,
   onDataUpdate,
-  onDelete
+  onDelete,
+  type
 }) => {
   const inputs: InputData[] = [
     {
@@ -46,6 +47,7 @@ const DeleteTransactionForm = ({
 const DeleteTransaction = ({
   transactionId,
   onDataUpdate,
+  type,
   onDelete
 }) => {
   const [deleteTransactionModal, setDeleteTransactionModal] = useState(false);
@@ -69,6 +71,7 @@ const DeleteTransaction = ({
             transactionId={transactionId}
             closeModal={closeDeleteTransactionModal}
             onDataUpdate={onDataUpdate}
+            type={`${type}`}
             onDelete={onDelete}
           />
         }

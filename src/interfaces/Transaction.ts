@@ -14,6 +14,7 @@ interface Transaction {
   amount: number;
   category: Category;
   type: TransactionType;
+  createdAt: string;
 }
 
 export default Transaction;

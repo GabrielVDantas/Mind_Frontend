@@ -31,3 +31,7 @@
 .divWithContent {
   width: 100%;
 }
+
+.modalCard .divWithContent input {
+  width: 100%;
+}

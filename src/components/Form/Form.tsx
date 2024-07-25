@@ -18,7 +18,6 @@ const Form = <T extends Record<string, unknown>>({
   submitForm,
   incomeForm,
   expenseForm,
-  modalForm,
 }: FormProps<T>) => {
   const [data, setData] = useState<T>(() => ({} as T));
   const [selectedCategory, setSelectedCategory] = useState<string>("");
